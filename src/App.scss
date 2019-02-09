@@ -1,0 +1,19 @@
+#contact-sidebar {
+  padding: 0;
+
+  .flip-container {
+    transform: scale(0.68);
+    left: -5.5rem;
+    position: relative;
+    perspective: 1000px;
+  }
+}
+hr {
+  background-image: linear-gradient(to right, transparent, #DBDBDB, transparent);
+  border: 0;
+  height: 1px;
+  margin: 22px 0;
+}
+.content {
+  margin: 0 5em;
+}

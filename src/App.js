@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
+import Blog from "./components/Blog/Blog";
+import BlogPage from "./components/Blog/BlogPage";
+import { Route, HashRouter } from "react-router-dom";
+import Resume from './components/Resume/Resume';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      title: "Blog Sophisticated",
+    };
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Header title={ this.state.title } />
+        <div className="row container ml-5 mr-5">
+          <HashRouter>
+            <div className="row content">
+              <Route exact path="/blog" component={ Blog }/>
+              <Route exact path="/blog/:id" component={ BlogPage }/>
+              <Route exact path="/resume" component={ Resume }/>
+            </div>
+          </HashRouter>
+        </div>
+        <Footer />
       </div>
     );
   }
