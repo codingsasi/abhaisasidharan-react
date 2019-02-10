@@ -17,7 +17,7 @@ export default class BlogList extends Component {
       <div className="blog--timeline">
       {this.props.blogs.map(blog => (
         <article key={ blog.id }>
-          <div className="blog-thumbnail--image row pt-5 pb-3 mt-2">
+          <div className="blog-thumbnail--image row pt-5 pb-3">
             <Thumbnail thumbnail={ blog.thumbnail } width='100%' height='60%' class="rounded img-fluid" alt={ blog.alt }/>
           </div>
           <div className="blog-thumbnail--title row">

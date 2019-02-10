@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
-import BlogList from './BlogList';
+import PortfolioList from './PortfolioList';
 import apiUrl from '../../Config';
-import './Blog.scss';
+import './Portfolio.scss';
 import Loading from '../Loading/Loading';
 import Sidebar from "../Sidebar/Sidebar";
 
-export default class Blog extends Component {
+export default class Portfolio extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
-      blogs: [],
+      portfolios: [],
     };
   }
   
   componentDidMount() {
-    fetch(apiUrl + '/api/node/blog?sort=-created')
+    fetch(apiUrl + '/api/node/portfolio?sort=-created')
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            blogs: result.data
+            portfolios: result.data
           });
         },
         (error) => {
@@ -37,33 +37,32 @@ export default class Blog extends Component {
   render() {
     const error = this.state.error;
     const isLoaded = this.state.isLoaded;
-    var items = this.state.blogs;
+    var items = this.state.portfolios;
     
     if (error) {
       return <div>Error: { error.message }</div>;
     } else if (!isLoaded) {
       return <Loading></Loading>;
     } else {
-      var blogs = [];
-      items.forEach(function(blog) {
+      var portfolios = [];
+      items.forEach(function(portfolio) {
         var data = {
-          id: blog.id,
-          nid: blog.attributes.drupal_internal__nid,
-          title: blog.attributes.title,
-          body:  blog.attributes.body.processed,
-          summary: blog.attributes.body.summary,
-          alias: blog.attributes.path.alias,
-          created: blog.attributes.created,
-          changed: blog.attributes.changed,
-          thumbnail: blog.relationships.field_thumbnail.links.related.href,
-          alt: blog.relationships.field_thumbnail.data.meta.alt,
+          id: portfolio.id,
+          nid: portfolio.attributes.drupal_internal__nid,
+          title: portfolio.attributes.title,
+          live_link: portfolio.attributes.field_portfolio_link,
+          alias: portfolio.attributes.path.alias,
+          body: { __html : portfolio.attributes.body.processed },
+          created: portfolio.attributes.created,
+          thumbnail: portfolio.relationships.field_thumbnail.links.related.href,
+          alt: portfolio.relationships.field_thumbnail.data.meta.alt,
         };
-        blogs.push(data);
+        portfolios.push(data);
       });
       return (
         <div className="row">
           <section className="col-md-8" style={{minHeight: 50 + 'em'}}>
-            <BlogList blogs={ blogs }/>
+            <PortfolioList portfolios={ portfolios }/>
           </section>
           <aside className="col-md-4">
             <Sidebar />

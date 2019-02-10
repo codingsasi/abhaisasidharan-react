@@ -3,6 +3,7 @@ import apiUrl from '../../Config';
 import './Blog.scss';
 import Loading from '../Loading/Loading';
 import Thumbnail from '../Thumbnail/Thumbnail';
+import Sidebar from '../Sidebar/Sidebar';
 
 export default class BlogPage extends Component {
   constructor(props) {
@@ -55,27 +56,32 @@ export default class BlogPage extends Component {
         alt: this.state.blogs.data.relationships.field_thumbnail.data.meta.alt,
       };  
       return (
-        <section className="col-md-8" style={ {minHeight: 50 + 'em'} }>
-          <div className="blog--timeline">
-            <article key={ blog.id }>
-              <div className="blog-full--image row pt-5 pb-3">
-                <Thumbnail thumbnail={ blog.thumbnail } width='100%' height='60%' class="rounded img-fluid" alt={ blog.alt }/>  
-              </div>
-              <div className="blog-full--title row pb-3">
-                <h4><a href="/blog/{{ blog.id }}">{ blog.title }</a></h4>
-              </div>
-              <div className="blog-full--created row pb-3">
-                <div>
-                  <span><i className="fa fa-calendar"></i> { blog.created } </span>
-                  <br />
+        <div className="row">
+          <section className="col-md-8" style={ {minHeight: 50 + 'em'} }>
+            <div className="blog--timeline">
+              <article key={ blog.id }>
+                <div className="blog-full--image row pt-5 pb-3">
+                  <Thumbnail thumbnail={ blog.thumbnail } width='100%' height='60%' class="rounded img-fluid" alt={ blog.alt }/>  
                 </div>
-              </div>
-              <div className="blog-full--body row py-3">
-                <div style={ {width: 100 + '%'} } dangerouslySetInnerHTML={ blog.body }></div>
-              </div>
-            </article>
-          </div>
-        </section>
+                <div className="blog-full--title row pb-3">
+                  <h4><a href="/blog/{{ blog.id }}">{ blog.title }</a></h4>
+                </div>
+                <div className="blog-full--created row pb-3">
+                  <div>
+                    <span><i className="fa fa-calendar"></i> { blog.created } </span>
+                    <br />
+                  </div>
+                </div>
+                <div className="blog-full--body row py-3">
+                  <div style={ {width: 100 + '%'} } dangerouslySetInnerHTML={ blog.body }></div>
+                </div>
+              </article>
+            </div>
+          </section>
+          <aside className="col-md-4">
+            <Sidebar />
+          </aside>
+        </div>
         );
     }
   }
