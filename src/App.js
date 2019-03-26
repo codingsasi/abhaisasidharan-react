@@ -9,6 +9,7 @@ import Resume from './components/Resume/Resume';
 import Contact from './components/Contact/Contact';
 import Portfolio from './components/Portfolio/Portfolio';
 import PortfolioPage from './components/Portfolio/PortfolioPage';
+import Dashboard from './components/Dashboard/Dashboard';
 
 class App extends Component {
   constructor() {
@@ -30,6 +31,7 @@ class App extends Component {
               <Route exact path="/contact" component={ Contact }/>
               <Route exact path="/my-works-question-mark" component={ Portfolio }/>
               <Route exact path="/my-works-question-mark/:id" component={ PortfolioPage }/>
+              <Route exact path="/" component={ Dashboard }/>
             </div>
           </HashRouter>
         </div>
