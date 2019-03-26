@@ -25,6 +25,7 @@ class App extends Component {
           <HashRouter>
             <div className="content">
               <Route exact path="/blog" component={ Blog }/>
+              <Route exact path="/" component={ Blog }/>
               <Route exact path="/blog/:id" component={ BlogPage }/>
               <Route exact path="/resume" component={ Resume }/>
               <Route exact path="/contact" component={ Contact }/>
