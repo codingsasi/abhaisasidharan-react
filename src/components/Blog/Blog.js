@@ -66,7 +66,6 @@ export default class Blog extends Component {
             <BlogList blogs={ blogs }/>
           </section>
           <aside className="col-md-4">
-            <Sidebar />
           </aside>
         </div>
       );
